@@ -77,8 +77,8 @@ class GeoportailLU:
         self.actions = []
         self.menu = self.tr(u'&Geoportal LU')
         # TODO: We are going to let the user set this up in a future iteration
-        self.toolbar = self.iface.addToolBar(u'Geoportal LU')
-        self.toolbar.setObjectName(u'Geoportal LU')
+        self.toolbar = self.iface.addToolBar(self.tr(u'Geoportal LU'))
+        self.toolbar.setObjectName(self.tr(u'Geoportal LU'))
 
         # shortcuts
         self.project = QgsProject.instance()
@@ -180,7 +180,7 @@ class GeoportailLU:
         icon_path = ':/plugins/geoportail_lu/icon.png'
         self.add_action(
             icon_path,
-            text=self.tr(u''),
+            text=self.tr(u'Geoportal LU'),
             status_tip=self.tr(u'Geoportal LU'),
             callback=self.run,
             parent=self.iface.mainWindow())
@@ -292,11 +292,11 @@ class GeoportailLU:
                 self.iface.mapCanvas().refresh()
                 result_layer.triggerRepaint()
             else:
-                msg = 'Cannot load result layer'
-                self.iface.messageBar().pushCritical('Search Error', msg)
+                msg = self.tr(u'Cannot load result layer')
+                self.iface.messageBar().pushCritical(self.tr(u'Search Error'), msg)
 
         else:
-            self.iface.messageBar().pushInfo('Info', 'Nothing do show!')
+            self.iface.messageBar().pushInfo('Info', self.tr(u'Nothing do show!'))
 
 
     def _get_group(self, group_name):
