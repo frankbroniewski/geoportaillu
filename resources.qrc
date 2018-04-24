@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/plugins/geoportail_lu" >
+        <file>icon.png</file>
+    </qresource>
+</RCC>
