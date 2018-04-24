@@ -1,5 +1,5 @@
 # Luxembourgish Geoportal Services
-use this plugin to access the services from the luxembourgish
+Use this plugin to access the services from the luxembourgish
 Geoportal. This first release allows searching for places, addresses and 
 parcels in Luxembourg.
 
