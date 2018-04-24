@@ -16,8 +16,8 @@ email=hallo@frankbroniewski.com
 
 about=Use services like the location search and - later - WMS service from the luxembourgish Geoportal in QGIS
 
-tracker=http://bugs
-repository=http://repo
+tracker=https://github.com/frankbroniewski/geoportaillu/issues
+repository=https://github.com/frankbroniewski/geoportaillu
 # End of mandatory metadata
 
 # Recommended items:
@@ -28,7 +28,7 @@ repository=http://repo
 # Tags are comma separated with spaces allowed
 tags=geoportal luxembourg location WMS
 
-homepage=http://homepage
+homepage=https://github.com/frankbroniewski/geoportaillu
 category=Web
 icon=icon.png
 # experimental flag
