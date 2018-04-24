@@ -10,7 +10,7 @@
 name=Geoportal LU
 qgisMinimumVersion=3.0
 description=Use services from the luxembourgish Geoportal in QGIS
-version=0.1
+version=0.15
 author=Dipl. Geogr. Frank Broniewski
 email=hallo@frankbroniewski.com
 
