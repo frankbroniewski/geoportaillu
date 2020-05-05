@@ -252,7 +252,7 @@ class GeoportailLU:
             # reproject to project's CRS if necessary
             if project_crs != 4326:
                 source_srs = osr.SpatialReference()
-                source_srs.ImportFromEPSG(4326)
+                source_srs.SetFromUserInput('urn:ogc:def:crs:OGC:1.3:CRS84')
                 target_srs = osr.SpatialReference()
                 target_srs.ImportFromEPSG(project_crs)
                 transformation = osr.CoordinateTransformation(source_srs,
