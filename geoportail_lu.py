@@ -26,6 +26,8 @@ import json
 
 from osgeo import ogr
 from osgeo import osr
+from osgeo.gdal import VersionInfo
+from osgeo.osr import OAMS_TRADITIONAL_GIS_ORDER
 
 from PyQt5.QtCore import QSettings, QTranslator, qVersion, QCoreApplication
 from PyQt5.QtGui import QIcon
@@ -252,9 +254,20 @@ class GeoportailLU:
             # reproject to project's CRS if necessary
             if project_crs != 4326:
                 source_srs = osr.SpatialReference()
-                source_srs.SetFromUserInput('urn:ogc:def:crs:OGC:1.3:CRS84')
+                source_srs.ImportFromEPSG(project_crs)
+
                 target_srs = osr.SpatialReference()
                 target_srs.ImportFromEPSG(project_crs)
+
+                # starting from GDAL version 3.0 onwards the CRS axis
+                # order is respected.
+                # switching to the traditional GIS order puts coordinates back
+                # where QGIS expects them -> XY and not YX how most CRS are
+                # defined
+                if VersionInfo().startswith('3'):
+                    source_srs.SetAxisMappingStrategy(OAMS_TRADITIONAL_GIS_ORDER)            
+                    target_srs.SetAxisMappingStrategy(OAMS_TRADITIONAL_GIS_ORDER)
+
                 transformation = osr.CoordinateTransformation(source_srs,
                                                               target_srs)
                 ogr_geom.Transform(transformation)
