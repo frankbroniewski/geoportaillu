@@ -265,7 +265,7 @@ class GeoportailLU:
                 # where QGIS expects them -> XY and not YX how most CRS are
                 # defined
                 if VersionInfo().startswith('3'):
-                    source_srs.SetAxisMappingStrategy(OAMS_TRADITIONAL_GIS_ORDER)            
+                    source_srs.SetAxisMappingStrategy(OAMS_TRADITIONAL_GIS_ORDER)
                     target_srs.SetAxisMappingStrategy(OAMS_TRADITIONAL_GIS_ORDER)
 
                 transformation = osr.CoordinateTransformation(source_srs,
