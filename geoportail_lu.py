@@ -34,6 +34,8 @@ from PyQt5.QtGui import QIcon
 from PyQt5.QtWidgets import QAction
 
 from qgis.core import QgsProject, QgsGeometry, QgsFeature, QgsVectorLayer
+# debug imports
+# from qgis.core import Qgis, QgsMessageLog
 
 # Initialize Qt resources from file resources.py
 from .resources import *
@@ -251,10 +253,16 @@ class GeoportailLU:
             # create the geometry from json and reproject eventually
             ogr_geom = ogr.CreateGeometryFromJson(
                 json.dumps(result['geometry']))
+
+            # QgsMessageLog.logMessage(
+            #     'Reprojection test start',
+            #     'Geoportail LU', 
+            #     Qgis.Info
+            # )
             # reproject to project's CRS if necessary
             if project_crs != 4326:
                 source_srs = osr.SpatialReference()
-                source_srs.ImportFromEPSG(project_crs)
+                source_srs.ImportFromEPSG(4326)
 
                 target_srs = osr.SpatialReference()
                 target_srs.ImportFromEPSG(project_crs)
@@ -264,6 +272,7 @@ class GeoportailLU:
                 # switching to the traditional GIS order puts coordinates back
                 # where QGIS expects them -> XY and not YX how most CRS are
                 # defined
+                # fixes https://github.com/frankbroniewski/geoportaillu/issues/5
                 if VersionInfo().startswith('3'):
                     source_srs.SetAxisMappingStrategy(OAMS_TRADITIONAL_GIS_ORDER)
                     target_srs.SetAxisMappingStrategy(OAMS_TRADITIONAL_GIS_ORDER)
