@@ -11,7 +11,7 @@ rm -rf "$PLUGIN_DIR"
 
 mkdir -p "$PLUGIN_DIR"
 # copy over the new things
-cp -a "$SRC_DIR/"*.py "$SRC_DIR/"README* "$SRC_DIR/"*.txt \
+cp -a "$SRC_DIR/"*.py "$SRC_DIR/"README.md "$SRC_DIR/"*.txt \
       "$SRC_DIR/"*.ui "$SRC_DIR/"resources.qrc "$SRC_DIR/"icon.png \
-      "$SRC_DIR/"help "$SRC_DIR/"i18n "$SRC_DIR/"scripts \
+      "$SRC_DIR/"LICENSE "$SRC_DIR/"i18n \
       "$PLUGIN_DIR"
