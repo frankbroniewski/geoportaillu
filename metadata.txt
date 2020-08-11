@@ -10,7 +10,7 @@
 name=Geoportal LU
 qgisMinimumVersion=3.0
 description=Use services from the luxembourgish Geoportal in QGIS
-version=0.16
+version=0.17
 author=Dipl. Geogr. Frank Broniewski
 email=hallo@frankbroniewski.com
 
@@ -23,7 +23,7 @@ repository=https://github.com/frankbroniewski/geoportaillu
 # Recommended items:
 
 # Uncomment the following line and add your changelog:
-changelog=2020-05-20 fixed axis order issue with GDAL version > 3 (issue #5)
+changelog=2020-08-11 fixed import error (issue #6)
 
 # Tags are comma separated with spaces allowed
 tags=geoportal luxembourg location WMS
