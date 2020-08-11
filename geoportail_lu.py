@@ -27,7 +27,12 @@ import json
 from osgeo import ogr
 from osgeo import osr
 from osgeo.gdal import VersionInfo
-from osgeo.osr import OAMS_TRADITIONAL_GIS_ORDER
+
+try:
+    # will fail if GDAL version 2.x is used
+    from osgeo.osr import OAMS_TRADITIONAL_GIS_ORDER
+except ImportError:
+    pass
 
 from PyQt5.QtCore import QSettings, QTranslator, qVersion, QCoreApplication
 from PyQt5.QtGui import QIcon
@@ -104,18 +109,17 @@ class GeoportailLU:
         # noinspection PyTypeChecker,PyArgumentList,PyCallByClass
         return QCoreApplication.translate('GeoportailLU', message)
 
-
     def add_action(
-        self,
-        icon_path,
-        text,
-        callback,
-        enabled_flag=True,
-        add_to_menu=True,
-        add_to_toolbar=True,
-        status_tip=None,
-        whats_this=None,
-        parent=None):
+            self,
+            icon_path,
+            text,
+            callback,
+            enabled_flag=True,
+            add_to_menu=True,
+            add_to_toolbar=True,
+            status_tip=None,
+            whats_this=None,
+            parent=None):
         """Add a toolbar icon to the toolbar.
 
         :param icon_path: Path to the icon for this action. Can be a resource
@@ -192,7 +196,6 @@ class GeoportailLU:
         self.dlg.searchButton.clicked.connect(self.update_search)
         self.dlg.addButton.clicked.connect(self.add_result)
 
-
     def unload(self):
         """Removes the plugin menu item and icon from QGIS GUI."""
         for action in self.actions:
@@ -203,7 +206,6 @@ class GeoportailLU:
         # remove the toolbar
         del self.toolbar
 
-
     def run(self):
         """Run method that performs all the real work"""
         # get the current CRS from the project in case it changed since
@@ -213,7 +215,6 @@ class GeoportailLU:
         self.dlg.show()
         # Run the dialog event loop
         result = self.dlg.exec_()
-
 
     def update_search(self):
         """Update the search field with results from input and geoportal
@@ -236,7 +237,6 @@ class GeoportailLU:
 
         dlg.blockSignals(False)
         return
-
 
     def add_result(self):
         """Get the selected search result from the search field and add it as
@@ -319,7 +319,6 @@ class GeoportailLU:
 
         else:
             self.iface.messageBar().pushInfo('Info', self.tr(u'Nothing do show!'))
-
 
     def _get_group(self, group_name):
         """Get a Layer Tree group by its name. If the group is not found
